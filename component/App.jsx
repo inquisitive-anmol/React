@@ -1,24 +1,26 @@
-import React, { useRef } from 'react'
+// controlled components
+// aap jabhi kuchh likhe useState ke through data real time par update kar denge
+// jaise hi kuchh typeho set state kardo nay value ke barabar.
+
+
+import React, { useState } from 'react'
 
 const App = () => {
 
-const name = useRef(null);
-const age = useRef(null);
+  const [val, setVal] = useState({name: "", email: ""});
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log(name.current.value, age.current.value);
-}
   return (
-    <form action="" onSubmit={handleSubmit}>
-      <input type="text" placeholder='name' ref={name} />
-      <input type="text" placeholder='age' ref={age} />
-      <input type="submit" />
-    </form>
+    <div>
+      <form action="" onSubmit={handleSubmit}>
+        <input type="text" onChange={(event) => setVal({...val, name: event.target.value})}/>
+        <input type="text" onChange={(event) => setVal({...val, email: event.target.value})}/>
+        <input type="submit" />
+      </form>
+    </div>
   )
 }
 
 export default App
-
-
-// this is the first way of form handling in react.
